@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107993303394",
+    "project_id": "health-care-app-group-11",
+    "storage_bucket": "health-care-app-group-11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107993303394:android:3821cd837127f83fd8443b",
+        "android_client_info": {
+          "package_name": "com.example.helthcareappgroup11"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUIXQyLr4VDLRZ5PUO8PdrcgeHzzFb6fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
