@@ -32,7 +32,6 @@ class ActivityRegister : AppCompatActivity() {
                 R.id.docter_role -> "doctor"
                 else -> ""
             }
-            // You can perform additional actions with the selected role here
         }
 
         btnRegister.setOnClickListener {

@@ -13,10 +13,9 @@ class MainActivity : AppCompatActivity() {
         val delay: Long = 2000
 
         Handler().postDelayed({
-            // Start the new activity
             val intent = Intent(this, ActivityLogin::class.java)
             startActivity(intent)
-            finish() // Optional: Close the current activity
+            finish()
         }, delay)
     }
 }
