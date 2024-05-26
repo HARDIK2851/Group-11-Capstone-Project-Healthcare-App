@@ -9,9 +9,14 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ActivityRegister : AppCompatActivity() {
     private lateinit var role: String
+
+    lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -23,6 +28,8 @@ class ActivityRegister : AppCompatActivity() {
         val password = findViewById<TextView>(R.id.password)
 
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+
+        auth = FirebaseAuth.getInstance()
 
         role = if (userRole.isChecked) "user" else "doctor"
 
@@ -42,7 +49,21 @@ class ActivityRegister : AppCompatActivity() {
             Log.d("RegistrationDetails", "Email: $emailText")
             Log.d("RegistrationDetails", "Password: $passwordText")
 
-            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+            auth.createUserWithEmailAndPassword(emailText, passwordText)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val userId = auth.currentUser?.uid
+                        val userRoleRef = FirebaseDatabase.getInstance().reference.child("users").child(userId!!)
+                        userRoleRef.setValue(UserRole(role))
+
+                        Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Registration failed: ${task.exception?.message.toString()}", Toast.LENGTH_SHORT).show()
+                        Log.d("ERROR", task.exception.toString())
+                    }
+                }
+
+//            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
         }
 
     }
