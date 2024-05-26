@@ -56,14 +56,24 @@ class ActivityRegister : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(emailText, passwordText)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val userId = auth.currentUser?.uid
-                            val userRoleRef =
-                                FirebaseDatabase.getInstance().reference.child("users")
-                                    .child(userId!!)
-                            userRoleRef.setValue(UserRole(role))
 
-                            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT)
-                                .show()
+                            val user = auth.currentUser
+                            user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
+                                if (verificationTask.isSuccessful) {
+                                    val userId = auth.currentUser?.uid
+                                    val userRoleRef =
+                                        FirebaseDatabase.getInstance().reference.child("users")
+                                            .child(userId!!)
+                                    userRoleRef.setValue(UserRole(role))
+
+                                    Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT)
+                                        .show()
+                                    Toast.makeText(this, "Verification email sent", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(this, "Failed to send verification email", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
                         } else {
                             Toast.makeText(
                                 this,
@@ -78,7 +88,6 @@ class ActivityRegister : AppCompatActivity() {
                     .show()
             }
 
-//            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
         }
 
     }
