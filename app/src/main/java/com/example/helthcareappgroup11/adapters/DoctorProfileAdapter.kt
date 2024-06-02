@@ -36,19 +36,7 @@ class DoctorProfileAdapter(options: FirebaseRecyclerOptions<Doctors>) :
 
         // doctorName val is initialized with modek and name.
         holder.doctorName.text = model.name
-        holder.doctorGender.text = model.gender
         holder.doctorSpeciality.text = model.speciality
-        holder.doctorTreatment.text = model.treatment
-        holder.doctorContactNumber.text = model.contactNumber
-        holder.doctorLanguages.text = model.languages
-        holder.doctorEmail.text = model.email
-        holder.doctorExperience.text = model.experience.toString()
-        holder.doctorQualification.text = model.qualification
-        holder.doctorWorkingHours.text = model.workingHours
-        holder.doctorRatings.text = model.rating.toString()
-        holder.doctorCertifications.text = model.certifications
-        holder.doctorBiography.text = model.biography
-        holder.doctorSpecialInterests.text = model.specialInterests
 
         // adding the clickable logic for viewMore button
         holder.viewMore.setOnClickListener{
@@ -63,21 +51,9 @@ class DoctorProfileAdapter(options: FirebaseRecyclerOptions<Doctors>) :
     {
             // initializing the variabls and finding with id
 
+        val doctorProfileImage : ImageView = itemView.findViewById(R.id.profileImageUrl)
         val doctorName : TextView = itemView.findViewById(R.id.name);
-        val doctorGender : TextView = itemView.findViewById(R.id.gender);
         val doctorSpeciality : TextView = itemView.findViewById(R.id.speciality);
-        val doctorTreatment : TextView = itemView.findViewById(R.id.treatment);
-        val doctorContactNumber : TextView = itemView.findViewById(R.id.contactNumber);
-        val doctorProfileImage : ImageView = itemView.findViewById(R.id.profileImageUrl);
-        val doctorLanguages : TextView = itemView.findViewById(R.id.languages);
-        val doctorEmail : TextView = itemView.findViewById(R.id.email);
-        val doctorQualification : TextView = itemView.findViewById(R.id.qualification);
-        val doctorExperience : TextView = itemView.findViewById(R.id.experience);
-        val doctorWorkingHours : TextView = itemView.findViewById(R.id.workingHours);
-        val doctorRatings : TextView = itemView.findViewById(R.id.rating);
-        var doctorCertifications : TextView = itemView.findViewById(R.id.certifications);
-        val doctorBiography : TextView = itemView.findViewById(R.id.biography);
-        var doctorSpecialInterests : TextView = itemView.findViewById(R.id.specialInterests);
         val viewMore : AppCompatButton = itemView.findViewById(R.id.viewMore)
     }
 }

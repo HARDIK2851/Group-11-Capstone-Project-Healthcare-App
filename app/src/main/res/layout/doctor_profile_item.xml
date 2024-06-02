@@ -12,163 +12,69 @@
         app:cardCornerRadius="12sp"
         >
 
+
         <LinearLayout
             android:layout_width="350sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="30sp"
             android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <ImageView
                 android:id="@+id/profileImageUrl"
-                android:layout_width="250dp"
-                android:layout_height="300dp"
+                android:layout_width="120sp"
+                android:layout_height="180sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_launcher_background" />
 
-            <TextView
-                android:id="@+id/name"
+            <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Name"
-                android:textSize="22sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Gender"
-                android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:text="Name"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/speciality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Speciality"
-                android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/speciality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20sp"
+                    android:text="Speciality"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/treatment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Treatment"
-                android:textSize="22sp" />
+                <!--            added the appCombatbutton, because it can accept the colours easily-->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="180sp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Teal"
+                    android:id="@+id/viewMore"
+                    android:text="View More"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="50sp"
+                    android:layout_gravity="center_horizontal"
+                    />
 
-            <TextView
-                android:id="@+id/contactNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Contact Number"
-                android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Email"
-                android:textSize="22sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/qualification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Qualification"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/experience"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Experience"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/languages"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Languages"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/workingHours"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Working Hours"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/specialInterests"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Special Intersests"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/certifications"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Certifications"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/biography"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Biography"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:text="Ratings"
-                android:textSize="22sp" />
-
-<!--            added the appCombatbutton, because it can accept the colours easily-->
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="180sp"
-                android:layout_height="wrap_content"
-                android:background="@color/Teal"
-                android:id="@+id/viewMore"
-                android:text="View More"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                android:layout_marginBottom="50sp"
-                android:layout_gravity="center_horizontal"
-                />
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
