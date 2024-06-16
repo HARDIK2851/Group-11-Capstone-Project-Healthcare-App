@@ -1,5 +1,6 @@
 package com.example.helthcareappgroup11
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -63,6 +64,10 @@ class ActivityDocotr_AddClinic : AppCompatActivity() {
                         doctorsRef.child("clinicId").setValue(clinicId)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Doctor updated with clinic ID", Toast.LENGTH_SHORT).show()
+
+                                // after updating go back to second screen
+                                val intent = Intent(this, DoctorSecondStepRegisterActivity::class.java)
+                                startActivity(intent);
                             }
                             .addOnFailureListener { exception ->
                                 Toast.makeText(this, "Error updating doctor: $exception", Toast.LENGTH_SHORT).show()

@@ -61,7 +61,10 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
                 doctorsRef.child(doctorId).setValue(doctor)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
-//                        startActivity(intent)
+
+                        // after update go back to first step page again
+                        val intent = Intent(this, DoctorFirstStepActivity::class.java)
+                        startActivity(intent)
                     }
                     .addOnFailureListener { exception ->
                         Toast.makeText(this, "Error updating profile: $exception", Toast.LENGTH_SHORT).show()
