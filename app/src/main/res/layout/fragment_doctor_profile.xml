@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragments.DoctorProfileFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/dPView"
+        android:text="Doctor Profile"
         android:padding="12dp"
         android:layout_marginBottom="50sp"
         android:background="@color/white"
