@@ -18,20 +18,15 @@ class DoctorFirstStepActivity : AppCompatActivity() {
         // mew button to take to next screen
         val nextScreen : Button = findViewById(R.id.goToSecondScreen)
 
-
         goToCompleteProfile.setOnClickListener {
             val intent = Intent(this, Activity_Doctor_CompleteProfile::class.java)
             startActivity(intent)
         }
 
-
         // adding new button that takes to next screen
         nextScreen.setOnClickListener {
-
             val intent = Intent(this, DoctorSecondStepRegisterActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }

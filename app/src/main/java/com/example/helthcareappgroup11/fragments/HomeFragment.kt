@@ -14,7 +14,9 @@ import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.adapters.PatientHistoryAdapter
 import com.example.helthcareappgroup11.models.DoctorProfile
 import com.example.helthcareappgroup11.models.PatientHistory
+import com.example.helthcareappgroup11.objectClasses.Doctors
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,11 +25,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
 class HomeFragment : Fragment() {
-    private lateinit var photoUrl: ImageView
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var doctor: Doctors
+
     private lateinit var fullName: TextView
 
-    private lateinit var storage: FirebaseStorage
-    private lateinit var doctorRef: DatabaseReference
+
 
     private var adapter: PatientHistoryAdapter? = null
     private lateinit var recyclerView: RecyclerView
@@ -38,11 +42,14 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-
-
-        photoUrl = view.findViewById(R.id.doctor_profile_img)
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
 
         fullName = view.findViewById(R.id.doctor_name)
+
+        val doctorId = auth.currentUser?.uid
+        val doctorsRef = database.getReference("doctors").child(doctorId!!)
+
 
 
         recyclerView = view.findViewById(R.id.patientHistoryRview)
@@ -50,14 +57,27 @@ class HomeFragment : Fragment() {
 
 
 
-        // Initialize Firebase Storage and Database references
-        storage = FirebaseStorage.getInstance()
-        doctorRef = FirebaseDatabase.getInstance().reference.child("doctors")
-        val options = FirebaseRecyclerOptions.Builder<DoctorProfile>()
-            .setQuery(doctorRef, DoctorProfile::class.java)
-            .build()
 
-        fetchDoctorData()
+        doctorsRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                doctor = dataSnapshot.getValue(Doctors::class.java)!!
+
+                fullName.text = doctor.fullName
+
+
+                // Set profile photo
+                val photoUrl = doctor.photoUrl
+                if (photoUrl != "") {
+                    Glide.with(this@HomeFragment)
+                        .load(photoUrl)
+                        .into(view.findViewById(R.id.photoUrl))
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
 
 
@@ -76,29 +96,5 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
 
         return  view
-    }
-    private fun fetchDoctorData() {
-        //...
-        doctorRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val doctorData = snapshot.children.firstOrNull()?.getValue(DoctorProfile::class.java)
-                    if (doctorData != null) {
-                        fullName.text = "Welcome, "
-                        fullName.text = doctorData.fullName
-                        val profileImageUrl = doctorData.photoUrl
-                        if (profileImageUrl != null) {
-                            Glide.with(requireActivity())
-                                .load(profileImageUrl)
-                                .into(photoUrl)
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle errors
-            }
-        })
     }
 }

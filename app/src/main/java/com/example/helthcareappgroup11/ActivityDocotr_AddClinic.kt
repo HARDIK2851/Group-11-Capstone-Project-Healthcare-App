@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,8 @@ import java.util.UUID
 class ActivityDocotr_AddClinic : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
+    private lateinit var backButton: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +31,7 @@ class ActivityDocotr_AddClinic : AppCompatActivity() {
             insets
         }
 
+        backButton = findViewById<ImageView>(R.id.backBtn)
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
@@ -36,6 +40,11 @@ class ActivityDocotr_AddClinic : AppCompatActivity() {
         val city = findViewById<EditText>(R.id.city)
         val zipcode = findViewById<EditText>(R.id.zipcode)
         val contactNumber = findViewById<EditText>(R.id.contactNumber)
+
+        backButton.setOnClickListener{
+            val intent = Intent(this, DoctorSecondStepRegisterActivity::class.java )
+            startActivity(intent)
+        }
 
         val btnAddClinic = findViewById<Button>(R.id.addClinic)
 

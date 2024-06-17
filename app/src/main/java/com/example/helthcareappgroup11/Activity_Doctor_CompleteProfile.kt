@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,8 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
 
+    // adding the back button
+    private lateinit var backButton: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,8 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
 
 
+
+
         val fullName = findViewById<EditText>(R.id.fullName)
         val email = findViewById<EditText>(R.id.email)
         val phone = findViewById<EditText>(R.id.phone)
@@ -39,6 +44,15 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
         val certifiations = findViewById<EditText>(R.id.certifications)
         val specialization = findViewById<EditText>(R.id.specialization)
         val bio = findViewById<EditText>(R.id.bio)
+
+        backButton = findViewById<ImageView>(R.id.backBtn)
+
+
+        backButton.setOnClickListener{
+            val intent = Intent(this, DoctorFirstStepActivity::class.java )
+            startActivity(intent)
+        }
+
 
         val updateDoctorData = findViewById<Button>(R.id.updateDoctorData)
 
