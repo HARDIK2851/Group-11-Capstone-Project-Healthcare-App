@@ -5,44 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lteal"
     tools:context=".MainActivity">
 
     <!-- Profile Section -->
+
+    <!-- Search Bar -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="@color/darkteal">
+        android:background="@color/darkteal"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/baseline_person_outline_24"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:background="@drawable/baseline_person_outline_24"
             android:scaleType="centerCrop"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/baseline_person_outline_24"/>
+            android:src="@drawable/baseline_person_outline_24" />
 
 
         <TextView
             android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="John Doe"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
+            android:layout_width="301dp"
+            android:layout_height="42dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:text="John Doe"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
 
-    <!-- Search Bar -->
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -53,7 +55,7 @@
         android:drawableLeft="@drawable/baseline_search_24"
         android:drawablePadding="8dp"
         android:hint="Search"
-        android:padding="8dp"
+        android:padding="16dp"
         android:textColor="@color/black" />
 
     <!-- Doctors Heading -->

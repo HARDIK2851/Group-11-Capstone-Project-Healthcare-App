@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,20 +16,19 @@
 
         <ImageView
             android:id="@+id/doctor_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/baseline_account_circle_24"
             android:contentDescription="Doctor Image"
             android:scaleType="centerCrop"
-            android:background="@drawable/round_profile_background"
             android:layout_marginEnd="16dp"/>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/doctor_name"
@@ -45,16 +45,16 @@
                 android:layout_height="wrap_content"
                 android:text="Cardiologist"
                 android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp"/>
+                android:textColor="@color/black"/>
 
-            <Button
-                android:id="@+id/book_appointment"
+            <TextView
+                android:id="@+id/appointment_date_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Book Appointment"
-                android:textColor="@color/white"
-                android:background="@drawable/round_button"/>
+                android:text="Monday, 5th July, 10:00 AM"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
