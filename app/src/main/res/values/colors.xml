@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkteal">#189669</color>
+    <color name="lightteal">#B5EAD2</color>
+    <color name="lteal">#D5ECE2</color>
+    <color name="nav_item_color">#000000</color>
 </resources>
