@@ -2,8 +2,17 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.HelthcareAppGroup11" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/Teal</item>
+        <item name="colorPrimaryVariant">@color/yellow</item>
+        <item name="android:statusBarColor">@color/Teal</item>
     </style>
 
     <style name="Theme.HelthcareAppGroup11" parent="Base.Theme.HelthcareAppGroup11" />
+
+    <style name="App.Custom.Inciator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/yellow</item>
+    </style>
+
+
 </resources>
