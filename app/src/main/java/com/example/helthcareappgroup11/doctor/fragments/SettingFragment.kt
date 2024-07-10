@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.doctor.fragments
 
 import android.content.Intent
 import android.os.Bundle

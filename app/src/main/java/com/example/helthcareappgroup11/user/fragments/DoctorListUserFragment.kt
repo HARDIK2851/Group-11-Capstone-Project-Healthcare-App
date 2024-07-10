@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.user.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

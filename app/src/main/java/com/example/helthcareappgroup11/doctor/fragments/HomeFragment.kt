@@ -1,28 +1,23 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.doctor.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.adapters.PatientHistoryAdapter
-import com.example.helthcareappgroup11.models.DoctorProfile
+import com.example.helthcareappgroup11.doctor.adapter.PatientHistoryAdapter
 import com.example.helthcareappgroup11.models.PatientHistory
-import com.example.helthcareappgroup11.objectClasses.Doctors
-import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.example.helthcareappgroup11.doctor.objectClasses.Doctors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
 
 class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth

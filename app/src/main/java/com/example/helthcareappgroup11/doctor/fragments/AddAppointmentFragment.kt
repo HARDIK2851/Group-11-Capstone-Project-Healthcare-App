@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.doctor.fragments
 
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -12,8 +12,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.objectClasses.AppointmentSlots
-import com.google.android.material.snackbar.Snackbar
+import com.example.helthcareappgroup11.doctor.objectClasses.AppointmentSlots
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.sql.Date

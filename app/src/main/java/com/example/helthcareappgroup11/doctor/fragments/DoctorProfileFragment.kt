@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.doctor.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import android.widget.TextView
 
 import com.bumptech.glide.Glide
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.objectClasses.Doctors
+import com.example.helthcareappgroup11.doctor.objectClasses.Doctors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

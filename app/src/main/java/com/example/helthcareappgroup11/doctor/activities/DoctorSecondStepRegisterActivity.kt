@@ -1,9 +1,10 @@
-package com.example.helthcareappgroup11
+package com.example.helthcareappgroup11.doctor.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.helthcareappgroup11.R
 
 
 class DoctorSecondStepRegisterActivity : AppCompatActivity() {

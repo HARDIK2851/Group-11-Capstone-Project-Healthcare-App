@@ -1,13 +1,12 @@
-package com.example.helthcareappgroup11.adapters
+package com.example.helthcareappgroup11.user.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.objectClasses.Clinics
+import com.example.helthcareappgroup11.user.models.Clinics
 
 class ClinicsAdapter(private val clinicsList: List<Clinics>) :
     RecyclerView.Adapter<ClinicsAdapter.ClinicViewHolder>() {

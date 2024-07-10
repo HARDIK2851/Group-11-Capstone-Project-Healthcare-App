@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11
+package com.example.helthcareappgroup11.user.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.helthcareappgroup11.fragments.AddAppointmentFragment
-import com.example.helthcareappgroup11.fragments.DoctorListUserFragment
-import com.example.helthcareappgroup11.fragments.DoctorProfileFragment
-import com.example.helthcareappgroup11.fragments.HomeFragment
-import com.example.helthcareappgroup11.fragments.SettingFragment
-import com.example.helthcareappgroup11.fragments.UpcomingFragment
-import com.example.helthcareappgroup11.fragments.UserHomeFragment
-import com.example.helthcareappgroup11.fragments.doctorClinicUserFragment
+import com.example.helthcareappgroup11.R
+import com.example.helthcareappgroup11.user.fragments.DoctorListUserFragment
+import com.example.helthcareappgroup11.user.fragments.UserHomeFragment
+import com.example.helthcareappgroup11.user.fragments.doctorClinicUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivityUser : AppCompatActivity() {
