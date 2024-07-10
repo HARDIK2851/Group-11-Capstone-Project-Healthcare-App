@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.fragments
+package com.example.helthcareappgroup11.user.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.objectClasses.Customers
+import com.example.helthcareappgroup11.doctor.objectClasses.Customers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

@@ -1,16 +1,11 @@
-package com.example.helthcareappgroup11.adapters
+package com.example.helthcareappgroup11.doctor.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.models.PatientHistory
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import de.hdodenhof.circleimageview.CircleImageView
 
 
