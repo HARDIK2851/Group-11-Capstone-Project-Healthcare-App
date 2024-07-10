@@ -29,7 +29,7 @@ class HomeActivityUser : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.bottom_home -> {
+                R.id.bottom_user_home -> {
                     replaceFragment(UserHomeFragment())
                     true
                 }
