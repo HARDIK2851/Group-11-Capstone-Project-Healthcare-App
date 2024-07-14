@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyAppointmentsActivity"
+    android:background="@color/white">
+
+    <!-- Heading -->
+    <RelativeLayout
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkteal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Appointments"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <!-- Tab Layout -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heading"
+        android:background="@color/lteal"
+        app:tabSelectedTextColor="@color/darkteal"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="@color/darkteal">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History"/>
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- View Pager -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout"/>
+
+</RelativeLayout>
