@@ -4,4 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Teal">#20c997</color>
     <color name="yellow">#daa520</color>
+
+
+<!--    new colors got added-->
+    <color name="darkteal">#189669</color>
+    <color name="lightteal">#B5EAD2</color>
+    <color name="lteal">#D5ECE2</color>
+    <color name="nav_item_color">#000000</color>
+    <color name="claygrey">#A4F4D2</color>
 </resources>
