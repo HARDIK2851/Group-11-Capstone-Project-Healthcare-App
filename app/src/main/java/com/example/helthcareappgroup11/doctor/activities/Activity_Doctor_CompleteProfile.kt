@@ -19,8 +19,6 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
 
-    // adding the back button
-    private lateinit var backButton: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,24 +36,16 @@ class Activity_Doctor_CompleteProfile : AppCompatActivity() {
 
 
 
-        val fullName = findViewById<EditText>(R.id.fullName)
-        val email = findViewById<EditText>(R.id.email)
-        val phone = findViewById<EditText>(R.id.phone)
-        val education = findViewById<EditText>(R.id.education)
-        val certifiations = findViewById<EditText>(R.id.certifications)
-        val specialization = findViewById<EditText>(R.id.specialization)
-        val bio = findViewById<EditText>(R.id.bio)
-
-        backButton = findViewById<ImageView>(R.id.backBtn)
+        val fullName = findViewById<EditText>(R.id.completeProfileFullName)
+        val email = findViewById<EditText>(R.id.completeProfiee_email)
+        val phone = findViewById<EditText>(R.id.completeProfilePhone)
+        val education = findViewById<EditText>(R.id.completeProfileEduccation)
+        val certifiations = findViewById<EditText>(R.id.completeProfileCertifications)
+        val specialization = findViewById<EditText>(R.id.completeProfileSpecialization)
+        val bio = findViewById<EditText>(R.id.completeProfileBio)
 
 
-        backButton.setOnClickListener{
-            val intent = Intent(this, DoctorFirstStepActivity::class.java )
-            startActivity(intent)
-        }
-
-
-        val updateDoctorData = findViewById<Button>(R.id.updateDoctorData)
+        val updateDoctorData = findViewById<Button>(R.id.btnSubmit)
 
         updateDoctorData.setOnClickListener {
             val currentUser = auth.currentUser
