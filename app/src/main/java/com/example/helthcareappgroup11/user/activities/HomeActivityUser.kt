@@ -22,6 +22,7 @@ class HomeActivityUser : AppCompatActivity() {
             var selectedFragment: Fragment? = null
             when (item.itemId) {
                 R.id.nav_user_home -> selectedFragment = UserHomeFragment()
+                R.id.nav_user_clinic -> selectedFragment = UserHomeFragment()
                 R.id.nav_user_appointment -> selectedFragment = AppointmentFragment()
                 R.id.nav_user_notification -> selectedFragment = NotificationFragmentUser()
                 R.id.nav_user_account -> selectedFragment = AccountFragmentUser()
