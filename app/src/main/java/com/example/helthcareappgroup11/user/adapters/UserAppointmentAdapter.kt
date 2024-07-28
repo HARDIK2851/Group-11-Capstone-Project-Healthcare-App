@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.user.models.AppointmentUser
+import com.example.helthcareappgroup11.models.AppointmentUser
 
 class UserAppointmentAdapter(private val appointments: List<AppointmentUser>) :
     RecyclerView.Adapter<UserAppointmentAdapter.AppointmentViewHolder>() {

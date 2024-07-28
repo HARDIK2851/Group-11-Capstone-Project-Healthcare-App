@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.user.adapters.UserAppointmentAdapter
-import com.example.helthcareappgroup11.user.models.AppointmentUser
+import com.example.helthcareappgroup11.models.AppointmentUser
 
 class UserHistoryAppointmentsFragment : Fragment() {
 

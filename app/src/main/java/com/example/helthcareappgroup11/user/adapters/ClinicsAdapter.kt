@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.user.models.Clinics
+import com.example.helthcareappgroup11.models.Clinics
 
 class ClinicsAdapter(private val clinicsList: List<Clinics>) :
     RecyclerView.Adapter<ClinicsAdapter.ClinicViewHolder>() {

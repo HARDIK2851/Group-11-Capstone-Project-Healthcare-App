@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import com.example.helthcareappgroup11.doctor.objectClasses.UserRole
+import com.example.helthcareappgroup11.models.UserRole
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 

@@ -146,5 +146,12 @@
                 android:textColor="@color/black" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:text="Log Out" />
     </LinearLayout>
+
 </FrameLayout>

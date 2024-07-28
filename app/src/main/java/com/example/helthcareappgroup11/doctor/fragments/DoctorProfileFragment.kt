@@ -9,7 +9,7 @@ import android.widget.TextView
 
 import com.bumptech.glide.Glide
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.doctor.objectClasses.Doctors
+import com.example.helthcareappgroup11.models.Doctors
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.helthcareappgroup11.admin.AdminHomeActivity
 import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
-import com.example.helthcareappgroup11.doctor.objectClasses.UserRole
-import com.example.helthcareappgroup11.user.activities.FirstStepUserActivity
+import com.example.helthcareappgroup11.models.UserRole
 import com.example.helthcareappgroup11.user.activities.HomeActivityUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,66 +32,72 @@ class ActivityLogin : AppCompatActivity() {
 
         btnGoToRegister.setOnClickListener {
             val intent = Intent(this, ActivityRegister::class.java)
-
             startActivity(intent)
         }
 
-        btnLogin.setOnClickListener{
-
+        btnLogin.setOnClickListener {
             val emailText = email.text.toString()
             val passwordText = password.text.toString()
-            auth.signInWithEmailAndPassword(emailText, passwordText)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        if (user?.isEmailVerified == true) {
-                            val userId = auth.currentUser?.uid
-                            val userRoleRef =
-                                FirebaseDatabase.getInstance().reference.child("users")
-                                    .child(userId!!)
+            if (emailText == "capstoneadmin123@gmail.com" && passwordText == "admin@123") {
+                val intent = Intent(this@ActivityLogin, AdminHomeActivity::class.java)
+                startActivity(intent)
+            } else{
+                auth.signInWithEmailAndPassword(emailText, passwordText)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val user = auth.currentUser
+                            if (user?.isEmailVerified == true) {
+                                val userId = auth.currentUser?.uid
+                                val userRoleRef =
+                                    FirebaseDatabase.getInstance().reference.child("users")
+                                        .child(userId!!)
 
-                            userRoleRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val userRole =
-                                        snapshot.getValue(UserRole::class.java)?.role ?: ""
+                                userRoleRef.addListenerForSingleValueEvent(object :
+                                    ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val userRole =
+                                            snapshot.getValue(UserRole::class.java)?.role ?: ""
 
-                                    if (userRole == "doctor") {
-                                        val intent = Intent(
-                                            this@ActivityLogin,
-                                            DoctorFirstStepActivity::class.java
-                                        )
-                                        startActivity(intent)
-                                    } else if (userRole == "user") {
-                                        val intent =
-                                            Intent(this@ActivityLogin, FirstStepUserActivity::class.java)
-                                        startActivity(intent)
+                                        if (userRole == "doctor") {
+                                            val intent = Intent(
+                                                this@ActivityLogin,
+                                                DoctorFirstStepActivity::class.java
+                                            )
+                                            startActivity(intent)
+                                        } else if (userRole == "user") {
+                                            val intent = Intent(
+                                                this@ActivityLogin,
+                                                HomeActivityUser::class.java
+                                            )
+                                            startActivity(intent)
+                                        }
                                     }
-                                }
 
-                                override fun onCancelled(error: DatabaseError) {
-                                    Toast.makeText(
-                                        this@ActivityLogin,
-                                        "Error retrieving user role",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            })
+                                    override fun onCancelled(error: DatabaseError) {
+                                        Toast.makeText(
+                                            this@ActivityLogin,
+                                            "Error retrieving user role",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                })
+                            } else {
+                                Toast.makeText(
+                                    this@ActivityLogin,
+                                    "Login failed: Please verify your email first",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         } else {
+                            val exception = task.exception
                             Toast.makeText(
                                 this@ActivityLogin,
-                                "Login failed: Please varify your email first",
+                                "Login failed - ${exception?.message}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    }else{
-                        val exception = task.exception
-                        Toast.makeText(
-                            this@ActivityLogin,
-                            "Login failed - ${exception?.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-                }
         }
         }
     }
+}
