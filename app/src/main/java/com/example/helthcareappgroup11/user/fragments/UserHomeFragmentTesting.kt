@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.doctor.objectClasses.Customers
+import com.example.helthcareappgroup11.models.Customers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

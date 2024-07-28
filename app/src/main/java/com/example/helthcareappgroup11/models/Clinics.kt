@@ -1,4 +1,4 @@
-package com.example.helthcareappgroup11.user.models
+package com.example.helthcareappgroup11.models
 
 data class Clinics(
     var clinicName: String? = "",

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.user.adapters.ClinicsAdapter
-import com.example.helthcareappgroup11.user.models.Clinics
+import com.example.helthcareappgroup11.models.Clinics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
