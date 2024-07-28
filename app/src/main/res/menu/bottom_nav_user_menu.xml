@@ -7,6 +7,11 @@
         android:title="Home" />
 
     <item
+        android:id="@+id/nav_user_clinic"
+        android:icon="@drawable/outline_clinic_24"
+        android:title="Clinic" />
+
+    <item
         android:id="@+id/nav_user_appointment"
         android:icon="@drawable/baseline_format_list_bulleted_24"
         android:title="Appointment" />

@@ -19,7 +19,7 @@ import java.util.UUID
 class ActivityDocotr_AddClinic : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private lateinit var backButton: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,22 +31,18 @@ class ActivityDocotr_AddClinic : AppCompatActivity() {
             insets
         }
 
-        backButton = findViewById<ImageView>(R.id.backBtn)
+
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
-        val clinicName = findViewById<EditText>(R.id.clinicName)
-        val streetAddress = findViewById<EditText>(R.id.streetAddress)
-        val city = findViewById<EditText>(R.id.city)
-        val zipcode = findViewById<EditText>(R.id.zipcode)
-        val contactNumber = findViewById<EditText>(R.id.contactNumber)
+        val clinicName = findViewById<EditText>(R.id.addClinic_clinicName)
+        val streetAddress = findViewById<EditText>(R.id.addClinic_address)
+        val city = findViewById<EditText>(R.id.addClinic_city)
+        val zipcode = findViewById<EditText>(R.id.addClinic_postalCode)
+        val contactNumber = findViewById<EditText>(R.id.addClinic_contactNumber)
 
-        backButton.setOnClickListener{
-            val intent = Intent(this, DoctorSecondStepRegisterActivity::class.java )
-            startActivity(intent)
-        }
 
-        val btnAddClinic = findViewById<Button>(R.id.addClinic)
+        val btnAddClinic = findViewById<Button>(R.id.btnSubmit_addClinic)
 
         btnAddClinic.setOnClickListener {
 
