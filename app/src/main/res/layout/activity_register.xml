@@ -107,4 +107,12 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logIn_text"
+        android:id="@+id/login_txt"
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
