@@ -32,12 +32,10 @@ class ActivityLogin : AppCompatActivity() {
 
         btnGoToRegister.setOnClickListener {
             val intent = Intent(this, ActivityRegister::class.java)
-
             startActivity(intent)
         }
 
-        btnLogin.setOnClickListener{
-
+        btnLogin.setOnClickListener {
             val emailText = email.text.toString()
             val passwordText = password.text.toString()
             auth.signInWithEmailAndPassword(emailText, passwordText)
@@ -46,52 +44,33 @@ class ActivityLogin : AppCompatActivity() {
                         val user = auth.currentUser
                         if (user?.isEmailVerified == true) {
                             val userId = auth.currentUser?.uid
-                            val userRoleRef =
-                                FirebaseDatabase.getInstance().reference.child("users")
-                                    .child(userId!!)
+                            val userRoleRef = FirebaseDatabase.getInstance().reference.child("users").child(userId!!)
 
                             userRoleRef.addListenerForSingleValueEvent(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                    val userRole =
-                                        snapshot.getValue(UserRole::class.java)?.role ?: ""
+                                    val userRole = snapshot.getValue(UserRole::class.java)?.role ?: ""
 
                                     if (userRole == "doctor") {
-                                        val intent = Intent(
-                                            this@ActivityLogin,
-                                            DoctorFirstStepActivity::class.java
-                                        )
+                                        val intent = Intent(this@ActivityLogin, DoctorFirstStepActivity::class.java)
                                         startActivity(intent)
                                     } else if (userRole == "user") {
-                                        val intent =
-                                            Intent(this@ActivityLogin, HomeActivityUser::class.java)
+                                        val intent = Intent(this@ActivityLogin, HomeActivityUser::class.java)
                                         startActivity(intent)
                                     }
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
-                                    Toast.makeText(
-                                        this@ActivityLogin,
-                                        "Error retrieving user role",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Toast.makeText(this@ActivityLogin, "Error retrieving user role", Toast.LENGTH_SHORT).show()
                                 }
                             })
                         } else {
-                            Toast.makeText(
-                                this@ActivityLogin,
-                                "Login failed: Please varify your email first",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@ActivityLogin, "Login failed: Please verify your email first", Toast.LENGTH_SHORT).show()
                         }
-                    }else{
+                    } else {
                         val exception = task.exception
-                        Toast.makeText(
-                            this@ActivityLogin,
-                            "Login failed - ${exception?.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@ActivityLogin, "Login failed - ${exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
-        }
     }
+}
