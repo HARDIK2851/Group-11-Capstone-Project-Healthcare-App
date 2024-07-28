@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.helthcareappgroup11.admin.AdminHomeActivity
 import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
 import com.example.helthcareappgroup11.models.UserRole
+import com.example.helthcareappgroup11.user.activities.FirstStepUserActivity
 import com.example.helthcareappgroup11.user.activities.HomeActivityUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -67,7 +68,7 @@ class ActivityLogin : AppCompatActivity() {
                                         } else if (userRole == "user") {
                                             val intent = Intent(
                                                 this@ActivityLogin,
-                                                HomeActivityUser::class.java
+                                                FirstStepUserActivity::class.java
                                             )
                                             startActivity(intent)
                                         }
