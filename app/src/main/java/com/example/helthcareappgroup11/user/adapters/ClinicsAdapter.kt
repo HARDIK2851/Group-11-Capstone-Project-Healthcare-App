@@ -1,11 +1,13 @@
 package com.example.helthcareappgroup11.user.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
+import com.example.helthcareappgroup11.admin.AdminClinicDetails
 import com.example.helthcareappgroup11.models.Clinics
 
 class ClinicsAdapter(private val clinicsList: List<Clinics>) :
@@ -33,9 +35,16 @@ class ClinicsAdapter(private val clinicsList: List<Clinics>) :
         init {
             itemView.setOnClickListener {
                 val clinic = clinicsList[adapterPosition]
-                // Example action: Navigate to detail page with clinic details
-//                val action = doctorClinicUserFragmentDirections.navigateToClinicDetail(clinic.clinicName)
-//                itemView.findNavController().navigate(action)
+                val intent = Intent(itemView.context, AdminClinicDetails::class.java)
+                intent.putExtra("CLINIC_NAME", clinic.clinicName)
+                intent.putExtra("STREET_ADDRESS", clinic.streetAddress)
+                intent.putExtra("CITY", clinic.city)
+                intent.putExtra("ZIPCODE", clinic.zipcode)
+                intent.putExtra("CONTACT_NUMBER", clinic.contactNumber)
+                intent.putExtra("CLINIC_IMAGE_URL", clinic.photoUrls)
+                intent.putExtra("DOCTOR_ID", clinic.doctorId)
+
+                itemView.context.startActivity(intent)
             }
         }
 

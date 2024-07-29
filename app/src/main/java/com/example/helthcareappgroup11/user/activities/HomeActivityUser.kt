@@ -8,6 +8,7 @@ import com.example.helthcareappgroup11.user.fragments.AccountFragmentUser
 import com.example.helthcareappgroup11.user.fragments.AppointmentFragment
 import com.example.helthcareappgroup11.user.fragments.NotificationFragmentUser
 import com.example.helthcareappgroup11.user.fragments.UserHomeFragment
+import com.example.helthcareappgroup11.user.fragments.UserHomeFragmentTesting
 import com.example.helthcareappgroup11.user.fragments.doctorClinicUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -22,7 +23,7 @@ class HomeActivityUser : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
             when (item.itemId) {
-                R.id.nav_user_home -> selectedFragment = UserHomeFragment()
+                R.id.nav_user_home -> selectedFragment = UserHomeFragmentTesting()
                 R.id.nav_user_clinic -> selectedFragment = doctorClinicUserFragment()
                 R.id.nav_user_appointment -> selectedFragment = AppointmentFragment()
                 R.id.nav_user_notification -> selectedFragment = NotificationFragmentUser()
