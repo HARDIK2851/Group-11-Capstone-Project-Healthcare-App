@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import com.example.helthcareappgroup11.ActivityLogin
 import com.example.helthcareappgroup11.R
+import com.example.helthcareappgroup11.doctor.activities.Profile_Info_DoctorActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -20,6 +21,8 @@ class SettingFragment : Fragment() {
     private lateinit var tvUserRole: TextView
     private lateinit var btnLogout: ImageView
     private lateinit var qaSection: LinearLayout
+
+    private lateinit var account_info : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,14 @@ class SettingFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
+
+        account_info = view.findViewById(R.id.account_info_text_settubg)
+
+        account_info.setOnClickListener{
+            val intent = Intent(requireContext(), Profile_Info_DoctorActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(requireContext(), "displaying the doctor information", Toast.LENGTH_SHORT).show()
+        }
 
         loadUserRole()
         setupQandA()

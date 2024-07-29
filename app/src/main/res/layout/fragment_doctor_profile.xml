@@ -34,11 +34,11 @@
             android:background="#00000f"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="80sp"
+            android:layout_width="120sp"
             android:layout_marginTop="20sp"
-            android:layout_height="80sp"
+            android:layout_height="120sp"
             android:src="@drawable/common_google_signin_btn_icon_dark_normal"
-            android:id="@+id/photoUrl"
+            android:id="@+id/photoUrl_DPF"
             android:layout_gravity="center_horizontal"
 
             app:civ_border_width="2sp"
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/fullName"
+                android:id="@+id/fullName_DPF"
                 android:text="Rastogi"
                 android:textStyle="bold"
                 android:textSize="22sp"
@@ -73,8 +73,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/doctorAge"
+            android:id="@+id/doctorAge_DPF"
             android:text="32 years"
+
             android:layout_gravity="center_horizontal"/>
 
 
@@ -99,7 +100,7 @@
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
-                    android:id="@+id/speciality"
+                    android:id="@+id/speciality_DPF"
                     android:text="random speciality"/>
 
                 <TextView
@@ -121,7 +122,7 @@
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
-                    android:id="@+id/doctorAvailability"
+                    android:id="@+id/doctorAvailability_DPF"
                     android:text="random timing"/>
 
                 <TextView
@@ -162,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:text="Random Clinic"
                 android:textStyle="bold"
-                android:id="@+id/clinicName"
+                android:id="@+id/clinicName_DPF"
                 android:textSize="20sp"
                 />
 
@@ -186,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:text="Toronto"
                 android:textStyle="bold"
-                android:id="@+id/city"
+                android:id="@+id/city_DPF"
                 android:textSize="20sp"
                 />
 
@@ -225,7 +226,7 @@
                 android:text="firebase"
                 android:textStyle="bold"
                 android:layout_marginStart="10sp"
-                android:id="@+id/education"
+                android:id="@+id/education_DPF"
                 android:textSize="20sp"
                 />
 
@@ -251,7 +252,7 @@
                 android:text="random certification for now"
                 android:textStyle="bold"
                 android:layout_marginStart="10sp"
-                android:id="@+id/certifications"
+                android:id="@+id/certifications_DPF"
                 android:textSize="20sp"
                 />
 
@@ -289,7 +290,7 @@
                 android:layout_marginStart="10sp"
                 android:text="abc@gmail.com"
                 android:textStyle="bold"
-                android:id="@+id/email"
+                android:id="@+id/email_DPF"
                 android:textSize="20sp"
                 />
 
@@ -312,7 +313,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+1234567895"
+                android:text="+1234567895_DPF"
                 android:textStyle="bold"
                 android:id="@+id/phone"
                 android:layout_marginStart="10sp"
@@ -336,7 +337,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bio"
+            android:id="@+id/bio_DPF"
             android:text="abc def ghi jkl mno pqer stu vwxyz abcd ef ghhi skjgdsk jldsj"
             android:layout_gravity="center_horizontal"/>
 
