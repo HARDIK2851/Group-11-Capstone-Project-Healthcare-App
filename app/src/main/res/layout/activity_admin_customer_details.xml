@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:id="@+id/main"
+    tools:context=".admin.AdminCustomerDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Customer Name -->
+        <TextView
+            android:id="@+id/customerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Customer Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- Customer Age -->
+        <TextView
+            android:id="@+id/customerAge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Age: 0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/customerName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Customer Height -->
+        <TextView
+            android:id="@+id/customerHeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Height: 0.0"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/customerAge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Customer Email -->
+        <TextView
+            android:id="@+id/customerEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Email: example@example.com"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/customerHeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Customer Phone -->
+        <TextView
+            android:id="@+id/customerPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Phone: +1234567890"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/customerEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
