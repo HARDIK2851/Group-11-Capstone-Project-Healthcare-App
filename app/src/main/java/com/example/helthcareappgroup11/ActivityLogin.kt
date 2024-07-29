@@ -68,7 +68,7 @@ class ActivityLogin : AppCompatActivity() {
                                         } else if (userRole == "user") {
                                             val intent = Intent(
                                                 this@ActivityLogin,
-                                                FirstStepUserActivity::class.java
+                                                HomeActivityUser::class.java
                                             )
                                             startActivity(intent)
                                         }
