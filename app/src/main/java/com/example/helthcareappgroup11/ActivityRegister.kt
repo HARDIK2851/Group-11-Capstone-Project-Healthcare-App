@@ -1,5 +1,6 @@
 package com.example.helthcareappgroup11
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import com.example.helthcareappgroup11.models.UserRole
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class ActivityRegister : AppCompatActivity() {
     private lateinit var role: String
+    private lateinit var loginTxt : TextView
 
     lateinit var auth: FirebaseAuth
 
@@ -29,6 +32,13 @@ class ActivityRegister : AppCompatActivity() {
         val confirmPassword = findViewById<EditText>(R.id.confirmPassword)
 
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+
+        loginTxt = findViewById(R.id.login_txt)
+        loginTxt.setOnClickListener{
+            startActivity(Intent(this, ActivityLogin::class.java))
+            Toast.makeText(this, "processing", Toast.LENGTH_SHORT).show()
+        }
+
 
         auth = FirebaseAuth.getInstance()
 

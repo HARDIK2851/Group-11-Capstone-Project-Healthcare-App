@@ -11,81 +11,81 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <!-- Profile Section -->
+        <!-- Profile Section -->
 
-    <!-- Search Bar -->
-    <RelativeLayout
-        android:id="@+id/topBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkteal"
-        android:padding="16dp">
+        <!-- Search Bar -->
+        <RelativeLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/darkteal"
+            android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/baseline_person_outline_24"
+                android:scaleType="centerCrop"
+                android:src="@drawable/baseline_person_outline_24" />
+
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="301dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="John Doe"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topBar"
+            android:layout_margin="16dp"
+            android:background="@drawable/custom_edittext"
+            android:drawableLeft="@drawable/baseline_search_24"
+            android:drawablePadding="8dp"
+            android:hint="Search"
+            android:padding="16dp"
+            android:textColor="@color/black" />
+
+        <!-- Doctors Heading -->
+        <TextView
+            android:id="@+id/doctors_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doctors"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_below="@id/search_bar"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp" />
+
+        <!-- RecyclerView for Doctors -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctor_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/doctors_heading"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@drawable/baseline_person_outline_24"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_person_outline_24" />
+            android:layout_marginBottom="70dp"
+            tools:listitem="@layout/item_doctor_card_user" />
 
-
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="301dp"
-            android:layout_height="42dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="John Doe"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topBar"
-        android:layout_margin="16dp"
-        android:background="@drawable/custom_edittext"
-        android:drawableLeft="@drawable/baseline_search_24"
-        android:drawablePadding="8dp"
-        android:hint="Search"
-        android:padding="16dp"
-        android:textColor="@color/black" />
-
-    <!-- Doctors Heading -->
-    <TextView
-        android:id="@+id/doctors_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Doctors"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_below="@id/search_bar"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" />
-
-    <!-- RecyclerView for Doctors -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/doctor_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/doctors_heading"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="70dp"
-        tools:listitem="@layout/item_doctor_card_user" />
-
-    <!--     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
     </LinearLayout>
 </FrameLayout>

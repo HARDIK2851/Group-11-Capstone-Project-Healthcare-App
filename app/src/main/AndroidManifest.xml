@@ -17,6 +17,16 @@
             android:exported="false" />
         <activity
             android:name=".admin.AdminClinicDetails"
+            android:name=".doctor.activities.Profile_Info_DoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.activities.SettingUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.activities.Account_InfoForUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.activities.ViewMoreForUserActivity"
             android:exported="false" />
         <activity
             android:name=".admin.AdminCustomerList"

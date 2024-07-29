@@ -1,6 +1,7 @@
 package com.example.helthcareappgroup11.doctor.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,37 +46,32 @@ class HomeFragment : Fragment() {
         val doctorId = auth.currentUser?.uid
         val doctorsRef = database.getReference("doctors").child(doctorId!!)
 
-
-
         recyclerView = view.findViewById(R.id.patientHistoryRview)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-
-
-
         doctorsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                doctor = dataSnapshot.getValue(Doctors::class.java)!!
-
-                fullName.text = doctor.fullName
-
+                doctor = dataSnapshot.getValue(Doctors::class.java) ?: run {
+                    Log.e("HomeFragment", "Doctor object is null")
+                    return
+                }
+                fullName.text = doctor.fullName ?: "Name not available"
 
                 // Set profile photo
                 val photoUrl = doctor.photoUrl
-                if (photoUrl != "") {
+                if (!photoUrl.isNullOrEmpty()) {
                     Glide.with(this@HomeFragment)
                         .load(photoUrl)
                         .into(view.findViewById(R.id.photoUrl))
+                } else {
+                    Log.e("HomeFragment", "Photo URL is null or empty")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                Log.e("HomeFragment", "Database error: ${error.message}")
             }
         })
-
-
-
 
 
         // fpr mpw we are using hard codes list to display the list of users
