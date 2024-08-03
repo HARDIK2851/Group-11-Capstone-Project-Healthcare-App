@@ -1,5 +1,6 @@
 package com.example.helthcareappgroup11.doctor.fragments
 
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,8 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.helthcareappgroup11.R
+import com.example.helthcareappgroup11.doctor.activities.ActivityDocotr_AddClinic
+import com.example.helthcareappgroup11.doctor.activities.DoctorSecondStepRegisterActivity
 import com.example.helthcareappgroup11.models.AppointmentSlots
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -27,6 +30,7 @@ class AddAppointmentFragment : Fragment() {
     private lateinit var appointmentDescription: EditText
     private lateinit var appointmentMeetingMode: Spinner
     private lateinit var addAppointmentButton: Button
+    private lateinit var addClinic: Button
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
 
@@ -48,7 +52,7 @@ class AddAppointmentFragment : Fragment() {
         appointmentDescription = view.findViewById(R.id.appointment_description);
         appointmentMeetingMode = view.findViewById(R.id.appointment_meeting_options);
         addAppointmentButton = view.findViewById(R.id.btnAppointmentSlot);
-
+        addClinic = view.findViewById(R.id.btnAddClinic)
 
         addAppointmentButton.setOnClickListener {
             val selectedDate = getSelectedDate(appointmentDate)
@@ -78,6 +82,10 @@ class AddAppointmentFragment : Fragment() {
                 .addOnFailureListener { exception ->
                     Toast.makeText(context, "Error adding appointment slot: $exception", Toast.LENGTH_SHORT).show()
                 }
+        }
+        addClinic.setOnClickListener {
+            val intent = Intent(activity, ActivityDocotr_AddClinic::class.java)
+            startActivity(intent)
         }
 
         return view

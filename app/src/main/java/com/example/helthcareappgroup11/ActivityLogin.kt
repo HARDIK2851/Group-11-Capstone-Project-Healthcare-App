@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.helthcareappgroup11.admin.AdminHomeActivity
 import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
+import com.example.helthcareappgroup11.doctor.activities.HomeActivityDoctor
 import com.example.helthcareappgroup11.models.UserRole
 import com.example.helthcareappgroup11.user.activities.FirstStepUserActivity
 import com.example.helthcareappgroup11.user.activities.HomeActivityUser
@@ -60,11 +61,7 @@ class ActivityLogin : AppCompatActivity() {
                                             snapshot.getValue(UserRole::class.java)?.role ?: ""
 
                                         if (userRole == "doctor") {
-                                            val intent = Intent(
-                                                this@ActivityLogin,
-                                                DoctorFirstStepActivity::class.java
-                                            )
-                                            startActivity(intent)
+                                            checkDoctorProfileAndNavigate(userId)
                                         } else if (userRole == "user") {
                                             val intent = Intent(
                                                 this@ActivityLogin,
@@ -100,5 +97,26 @@ class ActivityLogin : AppCompatActivity() {
                     }
         }
         }
+    }
+    private fun checkDoctorProfileAndNavigate(userId: String) {
+        val doctorRef = FirebaseDatabase.getInstance().reference.child("doctors").child(userId)
+        doctorRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val profileCompleted = snapshot.child("profileCompleted").getValue(Boolean::class.java) ?: false
+                val clinicAdded = snapshot.child("clinicAdded").getValue(Boolean::class.java) ?: false
+
+                if (profileCompleted && clinicAdded) {
+                    val intent = Intent(this@ActivityLogin, HomeActivityDoctor::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this@ActivityLogin, DoctorFirstStepActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@ActivityLogin, "Error checking profile completion", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
