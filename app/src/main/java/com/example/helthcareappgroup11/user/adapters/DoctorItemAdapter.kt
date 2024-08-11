@@ -37,6 +37,7 @@ class DoctorItemAdapter(options: FirebaseRecyclerOptions<Doctors>) :
             val storageRef: StorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(photoUrl)
             Glide.with(holder.doctorImage.context)
                 .load(storageRef)
+                .placeholder(R.drawable.patient1)
                 .into(holder.doctorImage)
         } else {
             // Handle the case where the photoUrl is null or empty

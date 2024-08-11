@@ -11,6 +11,7 @@ import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
 import com.example.helthcareappgroup11.models.UserRole
 import com.example.helthcareappgroup11.user.activities.FirstStepUserActivity
 import com.example.helthcareappgroup11.user.activities.HomeActivityUser
+import com.example.helthcareappgroup11.user.activities.PatientDetailActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -60,15 +61,17 @@ class ActivityLogin : AppCompatActivity() {
                                             snapshot.getValue(UserRole::class.java)?.role ?: ""
 
                                         if (userRole == "doctor") {
+                                            Toast.makeText(this@ActivityLogin, "doctor logged in", Toast.LENGTH_SHORT).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
                                                 DoctorFirstStepActivity::class.java
                                             )
                                             startActivity(intent)
                                         } else if (userRole == "user") {
+                                            Toast.makeText(this@ActivityLogin, "user logged in", Toast.LENGTH_SHORT).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
-                                                HomeActivityUser::class.java
+                                                PatientDetailActivity::class.java
                                             )
                                             startActivity(intent)
                                         }

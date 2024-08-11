@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.activities.PatientDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkteal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEDICAL DETAILS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/know_more"
+        android:textSize="24sp"
+        android:layout_marginTop="20sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18sp"
+        android:id="@+id/email_id"
+        android:hint="Enter Email ID"
+        android:layout_marginTop="20sp"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="8sp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/custom_edittext"
+        android:padding="8sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18sp"
+        android:layout_marginRight="18sp"
+        android:hint="Age"
+        android:id="@+id/age"
+        android:inputType="number"
+        android:background="@drawable/custom_edittext"
+        android:padding="8sp"
+        />
+
+<!--    used autocomplete text view the edit text to make it work as spinner-->
+    <AutoCompleteTextView
+        android:id="@+id/blood_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18sp"
+        android:layout_marginEnd="18sp"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/custom_edittext"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="8sp"
+        android:padding="8sp"
+        android:inputType="none"
+        android:hint="Blood group"
+        android:dropDownHeight="wrap_content"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18sp"
+        android:id="@+id/location_user"
+        android:hint="Enter location"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="8sp"
+        android:layout_marginTop="20sp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/custom_edittext"
+        android:padding="8sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        >
+
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/radioOther"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_height="wrap_content"
+                android:text="Other" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18sp"
+        android:layout_marginEnd="18sp"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:maxLines="10"
+        android:padding="10sp"
+        android:layout_marginTop="20sp"
+        android:layout_margin="10sp"
+        android:background="@drawable/custom_edittext"
+        android:gravity="top"
+        android:hint="Generally asking, what kind of help you need" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18sp"
+        android:text="Submit Application"
+        android:textSize="24sp"
+        android:padding="8sp"
+        android:id="@+id/submit_application"/>
+</LinearLayout>
