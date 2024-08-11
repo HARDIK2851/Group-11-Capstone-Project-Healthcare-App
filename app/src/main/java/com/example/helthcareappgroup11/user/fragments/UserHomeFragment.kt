@@ -1,17 +1,22 @@
 package com.example.helthcareappgroup11.user.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.models.Doctors
+import com.example.helthcareappgroup11.user.activities.ViewMoreForUserActivity
 import com.example.helthcareappgroup11.user.adapters.DoctorItemAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -24,9 +29,9 @@ import com.google.firebase.database.ValueEventListener
 class UserHomeFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
-    private lateinit var username: TextView
-    private lateinit var auth: FirebaseAuth
 
+
+    private lateinit var searchBar: EditText
     private lateinit var rView: RecyclerView
 
     private lateinit var doctorAdapterForUser: DoctorItemAdapter
@@ -39,16 +44,13 @@ class UserHomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_user_home, container, false)
 
-        username = view.findViewById(R.id.user_name)
 
-        database = FirebaseDatabase.getInstance().reference
-        auth = FirebaseAuth.getInstance()
+        searchBar = view.findViewById(R.id.search_bar)
 
         rView = view.findViewById(R.id.doctor_recycler_view)
         rView.layoutManager = LinearLayoutManager(context)
 
         database = FirebaseDatabase.getInstance().reference.child("doctors")
-        auth = FirebaseAuth.getInstance()
 
         val options = FirebaseRecyclerOptions.Builder<Doctors>()
             .setQuery(database, Doctors::class.java)
@@ -57,39 +59,31 @@ class UserHomeFragment : Fragment() {
         doctorAdapterForUser = DoctorItemAdapter(options)
         rView.adapter = doctorAdapterForUser
 
-        val currentUser = auth.currentUser
 
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            Log.d("UserHomeFragment", "Retrieving profile for userId: $userId")
-
-            database.child("clients").child(userId).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val pUusername = snapshot.child("username").getValue(String::class.java)
-                    if (pUusername != null) {
-                        username.text = pUusername
-                        Log.d("UserHomeFragment", "Username retrieved: $username")
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Failed to retrieve username",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Log.e("UserHomeFragment", "Username is null for userId: $userId")
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Failed to retrieve data", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
-        } else {
-            Toast.makeText(requireContext(), "No authenticated user", Toast.LENGTH_SHORT).show()
-        }
+        setupSearch()
 
         return view
+    }
+
+
+    private fun setupSearch() {
+        searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val searchQuery = s.toString()
+                filterDoctors(searchQuery)
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filterDoctors(query: String) {
+        val filteredQuery = database.orderByChild("fullName").startAt(query).endAt(query + "\uf8ff")
+        val options = FirebaseRecyclerOptions.Builder<Doctors>()
+            .setQuery(filteredQuery, Doctors::class.java)
+            .build()
+
+        doctorAdapterForUser.updateOptions(options)
     }
 
     override fun onStart() {

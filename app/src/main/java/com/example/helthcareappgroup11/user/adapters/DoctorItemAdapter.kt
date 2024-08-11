@@ -2,6 +2,7 @@ package com.example.helthcareappgroup11.user.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -21,6 +22,7 @@ import com.google.firebase.storage.StorageReference
 
 class DoctorItemAdapter(options: FirebaseRecyclerOptions<Doctors>) :
     FirebaseRecyclerAdapter<Doctors, DoctorItemAdapter.MyViewHolder>(options)  {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater  = LayoutInflater.from(parent.context)

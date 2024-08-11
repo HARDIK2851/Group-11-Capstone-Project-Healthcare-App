@@ -1,6 +1,10 @@
 package com.example.helthcareappgroup11.user.activities
 
+
+import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -13,6 +17,7 @@ import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.models.Patient
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+
 
 class PatientDetailActivity : AppCompatActivity() {
 
@@ -36,26 +41,30 @@ class PatientDetailActivity : AppCompatActivity() {
         // Initialize UI elements
         emailEditText = findViewById(R.id.email_id)
         ageEditText = findViewById(R.id.age)
-//        bloodGroupAutoCompleteTextView = findViewById(R.id.blood_group)
+        bloodGroupAutoCompleteTextView = findViewById(R.id.blood_group)
         locationEditText = findViewById(R.id.location_user)
         genderRadioGroup = findViewById(R.id.radioGroupGender)
         detailsEditText = findViewById(R.id.editTextDetails)
         submitButton = findViewById(R.id.submit_application)
 
-        val bloodGroupAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.blood_group)
-
-        // Load blood group options
-//        val bloodGroups = resources.getStringArray(R.array.blood_groups)
-//        val bloodGroups = arrayOf("O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-")
         val bloodGroups = resources.getStringArray(R.array.blood_groups)
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, bloodGroups)
 
-        // Set the adapter
         bloodGroupAutoCompleteTextView.setAdapter(adapter)
         bloodGroupAutoCompleteTextView.setThreshold(1)
+        bloodGroupAutoCompleteTextView.inputType = InputType.TYPE_NULL
+
+
+        bloodGroupAutoCompleteTextView.setOnClickListener {
+            bloodGroupAutoCompleteTextView.showDropDown()
+        }
 
         submitButton.setOnClickListener {
             submitForm()
+            val intent = Intent(this, HomeActivityUser::class.java)
+            startActivity(intent)
+            finish()
+            Toast.makeText(this, "Application submitted successfully! Redirecting to User Home...", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -63,15 +72,66 @@ class PatientDetailActivity : AppCompatActivity() {
     private fun submitForm() {
         // Retrieve data from UI elements
         val email = emailEditText.text.toString().trim()
-        val age = ageEditText.text.toString().trim().toIntOrNull() ?: 0
+//        val ageText = ageEditText.text.toString().trim().toIntOrNull() ?: 0
         val bloodGroup = bloodGroupAutoCompleteTextView.text.toString().trim()
         val location = locationEditText.text.toString().trim()
         val genderId = genderRadioGroup.checkedRadioButtonId
         val gender = findViewById<RadioButton>(genderId)?.text.toString()
         val details = detailsEditText.text.toString().trim()
 
+        val ageText = ageEditText.text.toString().trim()
+
+
+        if (ageText.isEmpty() || ageText.length == 0 || ageText == "") {
+            ageEditText.error = "Age is required"
+            return
+        }else{
+
+        }
+
+
+        var age: Int
+        try {
+            age = ageText.toInt()
+            if (age <= 0) {
+                ageEditText.error = "Age must be a positive number"
+                return
+            }
+        } catch (e: NumberFormatException) {
+            ageEditText.error = "Age must be a valid number"
+            return
+        }
+
+
+
+        if (email.isEmpty()) {
+            emailEditText.error = "Email is required"
+            return
+        }
+
+
+        if (bloodGroup.isEmpty()) {
+            bloodGroupAutoCompleteTextView.error = "Blood group is required"
+            return
+        }
+
+        if (location.isEmpty()) {
+            locationEditText.error = "Location is required"
+            return
+        }
+
+        if (genderId == -1) {
+            Toast.makeText(this, "Gender is required", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (details.isEmpty()) {
+            detailsEditText.error = "Details are required"
+            return
+        }
+
         // Create a Patient object
-        val patient = Patient(email, age, bloodGroup, location, gender, details)
+        val patient = Patient(email, age , bloodGroup, location, gender, details)
 
         // Add data to Firebase
         val patientId = database.push().key

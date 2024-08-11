@@ -72,7 +72,7 @@
         android:drawableStart="@drawable/baseline_email_24"
         android:drawablePadding="8sp"
         android:padding="8sp"
-        android:inputType="none"
+        android:inputType="text"
         android:hint="Blood group"
         android:dropDownHeight="wrap_content"/>
 

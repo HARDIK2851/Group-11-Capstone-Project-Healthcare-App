@@ -15,37 +15,22 @@
 
         <!-- Search Bar -->
         <RelativeLayout
-            android:id="@+id/topBar"
+            android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15sp"
             android:background="@color/darkteal"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/baseline_person_outline_24"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_person_outline_24" />
-
-
             <TextView
-                android:id="@+id/user_name"
-                android:layout_width="301dp"
-                android:layout_height="42dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="John Doe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
         <EditText

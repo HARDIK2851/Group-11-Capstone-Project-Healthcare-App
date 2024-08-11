@@ -22,96 +22,65 @@ import com.google.firebase.database.ValueEventListener
 
 class Account_InfoForUserActivity : AppCompatActivity() {
 
-    private lateinit var userFullName: TextView
-    private lateinit var userEmail: TextView
-    private lateinit var userPhone: TextView
-    private lateinit var userGender: TextView
-    private lateinit var userDateOfBirth: TextView
-    private lateinit var backBtn: Button
-
     private lateinit var database: DatabaseReference
-    private lateinit var auth: FirebaseAuth
+
+    // UI elements
+    private lateinit var textViewEmail: TextView
+    private lateinit var textViewAge: TextView
+    private lateinit var textViewBloodGroup: TextView
+    private lateinit var textViewLocation: TextView
+    private lateinit var textViewGender: TextView
+    private lateinit var textViewDetails: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_account_info_for_user)
 
-        userFullName = findViewById(R.id.user_full_name)
-        userEmail = findViewById(R.id.user_email)
-        userPhone = findViewById(R.id.user_phone)
-        userGender = findViewById(R.id.user_gender)
-        userDateOfBirth = findViewById(R.id.user_date_of_birth)
-        backBtn = findViewById(R.id.backBtnAtAccountInfo)
+        // Initialize Firebase Database
+        database = FirebaseDatabase.getInstance().getReference("patients")
 
-        database = FirebaseDatabase.getInstance().reference
-        auth = FirebaseAuth.getInstance()
+        // Initialize UI elements
+        textViewEmail = findViewById(R.id.textViewEmail)
+        textViewAge = findViewById(R.id.textViewAge)
+        textViewBloodGroup = findViewById(R.id.textViewBloodGroup)
+        textViewLocation = findViewById(R.id.textViewLocation)
+        textViewGender = findViewById(R.id.textViewGender)
+        textViewDetails = findViewById(R.id.textViewDetails)
 
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            Log.d("Account_InfoForUserActivity", "Retrieving profile for userId: $userId")
+        // Retrieve data from Firebase
+        loadPatientData()
+    }
 
-            // Retrieve user data from the database
-            database.child("clients").child(userId).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val pFullName = snapshot.child("firstName").getValue(String::class.java) + " " +
-                            snapshot.child("lastName").getValue(String::class.java)
-                    val pEmail = currentUser.email
-                    val pPhone = snapshot.child("phone").getValue(String::class.java)
-                    val pGender = snapshot.child("gender").getValue(String::class.java)
-                    val pDateOfBirth = snapshot.child("dateOfBirth").getValue(String::class.java)
+    private fun loadPatientData() {
 
-                    if (pFullName != null) {
-                        userFullName.text = pFullName
-                        Log.d("Account_InfoForUserActivity", "Full Name retrieved: $pFullName")
-                    } else {
-                        Log.e("Account_InfoForUserActivity", "Full Name is null for userId: $userId")
-                    }
+        val patientId = intent.getStringExtra("PATIENT_ID") ?: return
 
-                    if (pEmail != null) {
-                        userEmail.text = pEmail
-                        Log.d("Account_InfoForUserActivity", "Email retrieved: $pEmail")
-                    } else {
-                        Log.e("Account_InfoForUserActivity", "Email is null for userId: $userId")
-                    }
+        Log.d("Account_InfoForUser", "Loading data for patientId: $patientId")
+        database.child(patientId).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val email = snapshot.child("email").getValue(String::class.java)
+                    val age = snapshot.child("age").getValue(Int::class.java)
+                    val bloodGroup = snapshot.child("bloodGroup").getValue(String::class.java)
+                    val location = snapshot.child("location").getValue(String::class.java)
+                    val gender = snapshot.child("gender").getValue(String::class.java)
+                    val details = snapshot.child("details").getValue(String::class.java)
 
-                    if (pPhone != null) {
-                        userPhone.text = pPhone
-                        Log.d("Account_InfoForUserActivity", "Phone retrieved: $pPhone")
-                    } else {
-                        Log.e("Account_InfoForUserActivity", "Phone is null for userId: $userId")
-                    }
-
-                    if (pGender != null) {
-                        userGender.text = pGender
-                        Log.d("Account_InfoForUserActivity", "Gender retrieved: $pGender")
-                    } else {
-                        Log.e("Account_InfoForUserActivity", "Gender is null for userId: $userId")
-                    }
-
-                    if (pDateOfBirth != null) {
-                        userDateOfBirth.text = pDateOfBirth
-                        Log.d("Account_InfoForUserActivity", "Date of Birth retrieved: $pDateOfBirth")
-                    } else {
-                        Log.e("Account_InfoForUserActivity", "Date of Birth is null for userId: $userId")
-                    }
+                    // Update UI with retrieved data
+                    textViewEmail.text = "Email: $email"
+                    textViewAge.text = "Age: $age"
+                    textViewBloodGroup.text = "Blood Group: $bloodGroup"
+                    textViewLocation.text = "Location: $location"
+                    textViewGender.text = "Gender: $gender"
+                    textViewDetails.text = "Details: $details"
+                } else {
+                    Toast.makeText(this@Account_InfoForUserActivity, "No data found", Toast.LENGTH_SHORT).show()
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@Account_InfoForUserActivity, "Failed to retrieve data", Toast.LENGTH_SHORT).show()
-                    Log.e("Account_InfoForUserActivity", "Failed to retrieve data for userId: $userId", error.toException())
-                }
-            })
-        } else {
-            Toast.makeText(this, "No authenticated user", Toast.LENGTH_SHORT).show()
-            Log.e("Account_InfoForUserActivity", "No authenticated user found")
-        }
-
-        // Handle the back button click
-        backBtn.setOnClickListener {
-            startActivity(Intent(this, AccountFragmentUser::class.java))
-            Toast.makeText(this, "going back", Toast.LENGTH_SHORT).show()
-        }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Account_InfoForUser", "Failed to load patient data", error.toException())
+            }
+        })
     }
 }
