@@ -1,28 +1,26 @@
 package com.example.helthcareappgroup11.user.activities
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 import com.example.helthcareappgroup11.R
-import com.example.helthcareappgroup11.user.fragments.AccountFragmentUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
+
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
 class Account_InfoForUserActivity : AppCompatActivity() {
-
-    private lateinit var database: DatabaseReference
+    private lateinit var database: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
 
     // UI elements
     private lateinit var textViewEmail: TextView
@@ -32,12 +30,17 @@ class Account_InfoForUserActivity : AppCompatActivity() {
     private lateinit var textViewGender: TextView
     private lateinit var textViewDetails: TextView
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_info_for_user)
 
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+
         // Initialize Firebase Database
-        database = FirebaseDatabase.getInstance().getReference("patients")
+//        database = FirebaseDatabase.getInstance().getReference("patients")
 
         // Initialize UI elements
         textViewEmail = findViewById(R.id.textViewEmail)
@@ -47,40 +50,50 @@ class Account_InfoForUserActivity : AppCompatActivity() {
         textViewGender = findViewById(R.id.textViewGender)
         textViewDetails = findViewById(R.id.textViewDetails)
 
-        // Retrieve data from Firebase
-        loadPatientData()
-    }
 
-    private fun loadPatientData() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            Log.d("Account_InfoForUserActivity", "Retrieving profile for userId: $userId")
 
-        val patientId = intent.getStringExtra("PATIENT_ID") ?: return
+            // Retrieve user data from the database
+            database.reference.child("patients").child(userId).addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val pEmail = snapshot.child("email").getValue(String::class.java) ?: currentUser.email ?: "N/A"
+                    val pAge = snapshot.child("age").getValue(String::class.java) ?: "N/A"
+                    val pBloodGroup = snapshot.child("bloodGroup").getValue(String::class.java) ?: "N/A"
+                    val pLocation = snapshot.child("location").getValue(String::class.java) ?: "N/A"
+                    val pGender = snapshot.child("gender").getValue(String::class.java) ?: "N/A"
+                    val pDetails = snapshot.child("details").getValue(String::class.java) ?: "N/A"
 
-        Log.d("Account_InfoForUser", "Loading data for patientId: $patientId")
-        database.child(patientId).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val email = snapshot.child("email").getValue(String::class.java)
-                    val age = snapshot.child("age").getValue(Int::class.java)
-                    val bloodGroup = snapshot.child("bloodGroup").getValue(String::class.java)
-                    val location = snapshot.child("location").getValue(String::class.java)
-                    val gender = snapshot.child("gender").getValue(String::class.java)
-                    val details = snapshot.child("details").getValue(String::class.java)
+                    Log.d("Account_InfoForUserActivity", "Email: $pEmail")
+                    Log.d("Account_InfoForUserActivity", "Age: $pAge")
+                    Log.d("Account_InfoForUserActivity", "Blood Group: $pBloodGroup")
+                    Log.d("Account_InfoForUserActivity", "Location: $pLocation")
+                    Log.d("Account_InfoForUserActivity", "Gender: $pGender")
+                    Log.d("Account_InfoForUserActivity", "Details: $pDetails")
 
-                    // Update UI with retrieved data
-                    textViewEmail.text = "Email: $email"
-                    textViewAge.text = "Age: $age"
-                    textViewBloodGroup.text = "Blood Group: $bloodGroup"
-                    textViewLocation.text = "Location: $location"
-                    textViewGender.text = "Gender: $gender"
-                    textViewDetails.text = "Details: $details"
-                } else {
-                    Toast.makeText(this@Account_InfoForUserActivity, "No data found", Toast.LENGTH_SHORT).show()
+                    textViewEmail.text = pEmail
+                    textViewAge.text = pAge
+                    textViewBloodGroup.text = pBloodGroup
+                    textViewLocation.text = pLocation
+                    textViewGender.text = pGender
+                    textViewDetails.text = pDetails
+
+                    Log.d("Account_InfoForUserActivity", "Profile data retrieved successfully.")
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("Account_InfoForUser", "Failed to load patient data", error.toException())
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@Account_InfoForUserActivity, "Failed to retrieve data", Toast.LENGTH_SHORT).show()
+                    Log.e("Account_InfoForUserActivity", "Failed to retrieve data for userId: $userId", error.toException())
+                }
+            })
+        } else {
+            Toast.makeText(this, "No authenticated user", Toast.LENGTH_SHORT).show()
+            Log.e("Account_InfoForUserActivity", "No authenticated user found")
+        }
+
     }
+
 }
