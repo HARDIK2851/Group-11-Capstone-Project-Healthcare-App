@@ -24,6 +24,7 @@ class Account_InfoForUserActivity : AppCompatActivity() {
 
     // UI elements
     private lateinit var textViewEmail: TextView
+    private lateinit var textViewPhone: TextView
     private lateinit var textViewAge: TextView
     private lateinit var textViewBloodGroup: TextView
     private lateinit var textViewLocation: TextView
@@ -44,6 +45,7 @@ class Account_InfoForUserActivity : AppCompatActivity() {
 
         // Initialize UI elements
         textViewEmail = findViewById(R.id.textViewEmail)
+        textViewPhone = findViewById(R.id.textViewPhone)
         textViewAge = findViewById(R.id.textViewAge)
         textViewBloodGroup = findViewById(R.id.textViewBloodGroup)
         textViewLocation = findViewById(R.id.textViewLocation)
@@ -53,42 +55,51 @@ class Account_InfoForUserActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val userId = currentUser.uid
-            Log.d("Account_InfoForUserActivity", "Retrieving profile for userId: $userId")
+            val patientId = currentUser.displayName
+            if (patientId != null) {
+                Log.d("Account_InfoForUserActivity", "Retrieving profile for userId: $patientId")
+            }
+
+
 
             // Retrieve user data from the database
-            database.reference.child("patients").child(userId).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val pEmail = snapshot.child("email").getValue(String::class.java) ?: currentUser.email ?: "N/A"
-                    val pAge = snapshot.child("age").getValue(String::class.java) ?: "N/A"
-                    val pBloodGroup = snapshot.child("bloodGroup").getValue(String::class.java) ?: "N/A"
-                    val pLocation = snapshot.child("location").getValue(String::class.java) ?: "N/A"
-                    val pGender = snapshot.child("gender").getValue(String::class.java) ?: "N/A"
-                    val pDetails = snapshot.child("details").getValue(String::class.java) ?: "N/A"
+            if (patientId != null) {
+                database.reference.child("patients").child(patientId)?.addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val pEmail = snapshot.child("email").getValue(String::class.java) ?: currentUser.email ?: "N/A"
+                        val pPhone = snapshot.child("phone").getValue(Long::class.java)?.toString() ?: "N/A"
+                        val pAge = snapshot.child("age").getValue(Int::class.java).toString() ?: "N/A"
+                        val pBloodGroup = snapshot.child("bloodGroup").getValue(String::class.java) ?: "N/A"
+                        val pLocation = snapshot.child("location").getValue(String::class.java) ?: "N/A"
+                        val pGender = snapshot.child("gender").getValue(String::class.java) ?: "N/A"
+                        val pDetails = snapshot.child("details").getValue(String::class.java) ?: "N/A"
 
-                    Log.d("Account_InfoForUserActivity", "Email: $pEmail")
-                    Log.d("Account_InfoForUserActivity", "Age: $pAge")
-                    Log.d("Account_InfoForUserActivity", "Blood Group: $pBloodGroup")
-                    Log.d("Account_InfoForUserActivity", "Location: $pLocation")
-                    Log.d("Account_InfoForUserActivity", "Gender: $pGender")
-                    Log.d("Account_InfoForUserActivity", "Details: $pDetails")
+                        Log.d("Account_InfoForUserActivity", "Email: $pEmail")
+                        Log.d("Account_InfoForUserActivity", "Phone: $pPhone")
+                        Log.d("Account_InfoForUserActivity", "Age: $pAge")
+                        Log.d("Account_InfoForUserActivity", "Blood Group: $pBloodGroup")
+                        Log.d("Account_InfoForUserActivity", "Location: $pLocation")
+                        Log.d("Account_InfoForUserActivity", "Gender: $pGender")
+                        Log.d("Account_InfoForUserActivity", "Details: $pDetails")
 
-                    textViewEmail.text = pEmail
-                    textViewAge.text = pAge
-                    textViewBloodGroup.text = pBloodGroup
-                    textViewLocation.text = pLocation
-                    textViewGender.text = pGender
-                    textViewDetails.text = pDetails
+                        textViewEmail.text = pEmail
+                        textViewPhone.text = pPhone
+                        textViewAge.text = pAge
+                        textViewBloodGroup.text = pBloodGroup
+                        textViewLocation.text = pLocation
+                        textViewGender.text = pGender
+                        textViewDetails.text = pDetails
 
-                    Log.d("Account_InfoForUserActivity", "Profile data retrieved successfully.")
-                }
+                        Log.d("Account_InfoForUserActivity", "Profile data retrieved successfully.")
+                    }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@Account_InfoForUserActivity, "Failed to retrieve data", Toast.LENGTH_SHORT).show()
-                    Log.e("Account_InfoForUserActivity", "Failed to retrieve data for userId: $userId", error.toException())
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(this@Account_InfoForUserActivity, "Failed to retrieve data", Toast.LENGTH_SHORT).show()
+                        Log.e("Account_InfoForUserActivity", "Failed to retrieve data for userId: $patientId", error.toException())
+                    }
+                })
+            }
         } else {
             Toast.makeText(this, "No authenticated user", Toast.LENGTH_SHORT).show()
             Log.e("Account_InfoForUserActivity", "No authenticated user found")

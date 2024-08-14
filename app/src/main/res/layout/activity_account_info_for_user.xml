@@ -39,58 +39,190 @@
             android:src="@drawable/patient1"
             android:layout_height="200sp"/>
 
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_marginTop="25sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_marginLeft="20sp"
-            android:text="Email address" />
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
 
-        <TextView
-            android:id="@+id/textViewAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Email address" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/textViewPhone"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Phone" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="15sp"
-            android:text="Age:" />
+            android:layout_marginRight="20sp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textViewBloodGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/textViewAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Age:" />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blood Group"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/textViewBloodGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Blood Group:" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_marginLeft="20sp"
             android:layout_marginTop="15sp"
-            android:text="Blood Group:" />
+            android:layout_marginRight="20sp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textViewLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="15sp"
-            android:text="Location:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
 
-        <TextView
-            android:id="@+id/textViewGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="15sp"
-            android:text="Gender:" />
+            <TextView
+                android:id="@+id/textViewLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Location:" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginLeft="20sp"
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_marginTop="15sp"
-            android:text="Details:" />
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bemder"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/textViewGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Gender" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:layout_weight="1"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/textViewDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Details:" />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

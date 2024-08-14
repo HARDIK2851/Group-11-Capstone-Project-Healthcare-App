@@ -39,11 +39,25 @@
         android:layout_height="wrap_content"
         android:layout_margin="18sp"
         android:id="@+id/email_id"
-        android:hint="Enter Email ID"
+        android:hint="Enter Email address again"
         android:layout_marginTop="20sp"
         android:drawableStart="@drawable/baseline_email_24"
         android:drawablePadding="8sp"
         android:inputType="textEmailAddress"
+        android:background="@drawable/custom_edittext"
+        android:padding="8sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18sp"
+        android:id="@+id/phone_id"
+        android:hint="Enter phone number"
+        android:layout_marginTop="20sp"
+        android:drawableStart="@drawable/call_icon"
+        android:drawablePadding="8sp"
+        android:inputType="number"
         android:background="@drawable/custom_edittext"
         android:padding="8sp"
         />
