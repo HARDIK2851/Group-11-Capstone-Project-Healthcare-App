@@ -7,6 +7,11 @@ data class AppointmentSlots(
     val availability: String,
     val title: String,
     val description: String,
-    val meetingOption: String
+    val meetingOption: String,
+    val booked: Boolean,
+    val customerId: String,
+    val doctorId: String
+){
+    constructor() : this("", "", "", "", "", "", "",false,"","")
 
-)
+}

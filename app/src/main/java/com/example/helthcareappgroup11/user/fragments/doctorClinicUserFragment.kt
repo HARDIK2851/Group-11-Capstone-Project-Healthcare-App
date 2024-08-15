@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.helthcareappgroup11.R
 import com.example.helthcareappgroup11.user.adapters.ClinicsAdapter
 import com.example.helthcareappgroup11.models.Clinics
+import com.example.helthcareappgroup11.user.adapters.ClinicsAdapterUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,7 +21,7 @@ import com.google.firebase.database.ValueEventListener
 class doctorClinicUserFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var clinicsAdapter: ClinicsAdapter
+    private lateinit var clinicsAdapter: ClinicsAdapterUser
     private var clinicsList: MutableList<Clinics> = mutableListOf() // List to hold clinics data
 
     private lateinit var auth: FirebaseAuth
@@ -37,7 +38,7 @@ class doctorClinicUserFragment : Fragment() {
 
         recyclerView = rootView.findViewById(R.id.recyclerViewClinics)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        clinicsAdapter = ClinicsAdapter(clinicsList)
+        clinicsAdapter = ClinicsAdapterUser(clinicsList)
         recyclerView.adapter = clinicsAdapter
 
         loadClinicsData()

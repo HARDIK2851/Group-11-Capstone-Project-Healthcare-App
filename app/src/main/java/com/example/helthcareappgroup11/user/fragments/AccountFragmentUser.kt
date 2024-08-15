@@ -76,10 +76,10 @@ class AccountFragmentUser : Fragment() {
             val userId = currentUser.uid
             Log.d("AccountFragmentUser", "Retrieving profile for userId: $userId")
 
-            database.child("clients").child(userId).addListenerForSingleValueEvent(object :
+            database.child("Customers").child(userId).addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val pUsername = snapshot.child("username").getValue(String::class.java)
+                    val pUsername = snapshot.child("name").getValue(String::class.java)
                     val pEmail = currentUser.email
 
                     if (pUsername != null) {
