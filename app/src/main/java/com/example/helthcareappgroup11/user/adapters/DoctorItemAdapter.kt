@@ -71,8 +71,6 @@ class DoctorItemAdapter(options: FirebaseRecyclerOptions<Doctors>) :
 
         holder.bookAppointment.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Book Appointment clicked for ${model.fullName}", Toast.LENGTH_SHORT).show()
-            val Intent = Intent(holder.itemView.context, BookAppointmentForUserFragment::class.java)
-            holder.itemView.context.startActivity(Intent)
         }
     }
 
