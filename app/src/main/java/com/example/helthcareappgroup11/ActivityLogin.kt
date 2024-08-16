@@ -1,16 +1,16 @@
 package com.example.helthcareappgroup11
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.helthcareappgroup11.admin.AdminHomeActivity
 import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
 import com.example.helthcareappgroup11.models.UserRole
-import com.example.helthcareappgroup11.user.activities.FirstStepUserActivity
-import com.example.helthcareappgroup11.user.activities.HomeActivityUser
 import com.example.helthcareappgroup11.user.activities.PatientDetailActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 
 class ActivityLogin : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -40,10 +41,16 @@ class ActivityLogin : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val emailText = email.text.toString()
             val passwordText = password.text.toString()
+
+            if (!isValidEmail(emailText)) {
+                showInvalidEmailDialog()
+                return@setOnClickListener
+            }
+
             if (emailText == "capstoneadmin123@gmail.com" && passwordText == "admin@123") {
                 val intent = Intent(this@ActivityLogin, AdminHomeActivity::class.java)
                 startActivity(intent)
-            } else{
+            } else {
                 auth.signInWithEmailAndPassword(emailText, passwordText)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
@@ -61,14 +68,22 @@ class ActivityLogin : AppCompatActivity() {
                                             snapshot.getValue(UserRole::class.java)?.role ?: ""
 
                                         if (userRole == "doctor") {
-                                            Toast.makeText(this@ActivityLogin, "doctor logged in", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(
+                                                this@ActivityLogin,
+                                                "Doctor logged in",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
                                                 DoctorFirstStepActivity::class.java
                                             )
                                             startActivity(intent)
                                         } else if (userRole == "user") {
-                                            Toast.makeText(this@ActivityLogin, "user logged in", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(
+                                                this@ActivityLogin,
+                                                "User logged in",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
                                                 PatientDetailActivity::class.java
@@ -101,7 +116,19 @@ class ActivityLogin : AppCompatActivity() {
                             ).show()
                         }
                     }
+            }
         }
-        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun showInvalidEmailDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Invalid Email")
+            .setMessage("Please enter a valid email address.")
+            .setPositiveButton("OK", null)
+            .show()
     }
 }
