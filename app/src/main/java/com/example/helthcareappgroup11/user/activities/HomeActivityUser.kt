@@ -23,10 +23,10 @@ class HomeActivityUser : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
             when (item.itemId) {
-                R.id.nav_user_home -> selectedFragment = UserHomeFragmentTesting()
+                R.id.nav_user_home -> selectedFragment = UserHomeFragment()
                 R.id.nav_user_clinic -> selectedFragment = doctorClinicUserFragment()
                 R.id.nav_user_appointment -> selectedFragment = AppointmentFragment()
-                R.id.nav_user_notification -> selectedFragment = NotificationFragmentUser()
+                R.id.nav_user_notification -> selectedFragment = UserHomeFragmentTesting()
                 R.id.nav_user_account -> selectedFragment = AccountFragmentUser()
             }
             if (selectedFragment != null) {

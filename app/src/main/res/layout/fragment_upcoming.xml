@@ -5,13 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".doctor.fragments.UpcomingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upcoming Appointments Fragment"
-        android:textSize="40sp"
-        android:textColor="@color/Teal"
-        android:layout_gravity="center"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
 
+      <RelativeLayout
+          android:id="@+id/heading"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="15sp"
+          android:background="@color/darkteal"
+          android:padding="16dp">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Created appointments"
+              android:textSize="22sp"
+              android:textStyle="bold"
+              android:textColor="@color/white"
+              android:layout_centerHorizontal="true"
+              android:layout_centerVertical="true"/>
+      </RelativeLayout>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="12sp"
+          android:id="@+id/rView_apts"
+          />
+  </LinearLayout>
 </FrameLayout>

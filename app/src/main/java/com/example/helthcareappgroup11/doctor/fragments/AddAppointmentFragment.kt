@@ -45,32 +45,37 @@ class AddAppointmentFragment : Fragment() {
         var userId = user?.uid
         database = FirebaseDatabase.getInstance()
 
+        appointmentTitle = view.findViewById(R.id.appointment_title);
         appointmentDate = view.findViewById(R.id.appointment_date);
         appointmentDuration = view.findViewById(R.id.appointment_duration);
         appointmentAvailability = view.findViewById(R.id.appointment_availability);
+        appointmentDescription = view.findViewById(R.id.appointment_description);
         appointmentMeetingMode = view.findViewById(R.id.appointment_meeting_options);
         addAppointmentButton = view.findViewById(R.id.btnAppointmentSlot);
 
 
         addAppointmentButton.setOnClickListener {
+            val title = appointmentTitle.text.toString().trim()
             val selectedDate = getSelectedDate(appointmentDate)
             val duration = appointmentDuration.selectedItem.toString()
             val availability = appointmentAvailability.text.toString().trim()
+            val description = appointmentDescription.text.toString().trim()
             val meetingOption = appointmentMeetingMode.selectedItem.toString()
 
             // Add appointment data to Firebase Realtime Database
             val appointmentRef = FirebaseDatabase.getInstance().getReference("appointmentSlots")
-            val appointmentId = UUID.randomUUID().toString();
+            val appointmentId = UUID.randomUUID().toString()
             val appointmentData = AppointmentSlots(
-                appointmentId!!,
+                appointmentId,
                 selectedDate,
                 duration,
                 availability,
-                "",
-                "",
+                title,
+                description,
                 meetingOption,
                 false,
                 "",
+
                 userId.toString().trim()
             )
             if (userId != null) {
