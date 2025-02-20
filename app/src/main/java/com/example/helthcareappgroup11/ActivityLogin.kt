@@ -10,7 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.helthcareappgroup11.admin.AdminHomeActivity
 import com.example.helthcareappgroup11.doctor.activities.DoctorFirstStepActivity
+import com.example.helthcareappgroup11.doctor.activities.HomeActivityDoctor
 import com.example.helthcareappgroup11.models.UserRole
+import com.example.helthcareappgroup11.user.activities.HomeActivityUser
 import com.example.helthcareappgroup11.user.activities.PatientDetailActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -75,7 +77,7 @@ class ActivityLogin : AppCompatActivity() {
                                             ).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
-                                                DoctorFirstStepActivity::class.java
+                                                HomeActivityDoctor::class.java
                                             )
                                             startActivity(intent)
                                         } else if (userRole == "user") {
@@ -86,7 +88,7 @@ class ActivityLogin : AppCompatActivity() {
                                             ).show()
                                             val intent = Intent(
                                                 this@ActivityLogin,
-                                                PatientDetailActivity::class.java
+                                                HomeActivityUser::class.java
                                             )
                                             startActivity(intent)
                                         }
